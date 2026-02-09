@@ -10,25 +10,20 @@ source:
   sha256: 2d64ed284849eedbf0bbf42eeebaefb5f57377034b250fe53f84d1eb77edc6aa
 
 build:
-  skip: true  # [py<39]
+  noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
 
 requirements:
-  build:
-    - {{ compiler('c') }}
-    - {{ stdlib('c') }}
   host:
-    - python
-    - setuptools >=64
-    - wheel
-    - numpy
+    - python >=3.10
     - pip
   run:
-    - python
-    - matplotlib-base
-    - scipy
+    - python >=3.10
     - numpy
+    - matplotlib-base
+    - pydantic
+    - scipy
 
 test:
   imports:
